@@ -11,9 +11,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Player player;
 
     [Header("Player Input Settings")]
-    private InputAction moveAction; //WASD
+    private InputAction moveAction;      // WASD
+    private InputAction primaryAction;   // Left Click
+    private InputAction secondaryAction; // Right Click
+    private InputAction tertiaryAction;  // Q
+    private InputAction utilityAction;   // Spacebar
+    private InputAction interactAction;  // E
+    private InputAction healAction;      // R
 
     [HideInInspector] public Vector2 moveInput;
+    [HideInInspector] public bool primaryInput;
+    [HideInInspector] public bool secondaryInput;
+    [HideInInspector] public bool tertiaryInput;
+    [HideInInspector] public bool utilityInput;
+    [HideInInspector] public bool interactInput;
+    [HideInInspector] public bool healInput;
 
     [Header("Player")]
     public GameObject go;
@@ -93,15 +105,38 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-
     #region Input System Callbacks
 
     private void EnableInputs()                                         //enables the input system and sets up callbacks for player actions
     {
         moveAction = playerInput.actions["Move"];
+        primaryAction = playerInput.actions["Primary"];
+        secondaryAction = playerInput.actions["Secondary"];
+        tertiaryAction = playerInput.actions["Tertiary"];
+        utilityAction = playerInput.actions["Utility"];
+        interactAction = playerInput.actions["Interact"];
+        healAction = playerInput.actions["Heal"];
 
         moveAction.performed += OnMove;
         moveAction.canceled += OnMove;
+
+        primaryAction.performed += context => primaryInput = true;
+        primaryAction.canceled += context => primaryInput = false;
+
+        secondaryAction.performed += context => secondaryInput = true;
+        secondaryAction.canceled += context => secondaryInput = false;
+
+        tertiaryAction.performed += context => tertiaryInput = true;
+        tertiaryAction.canceled += context => tertiaryInput = false;
+
+        utilityAction.performed += context => utilityInput = true;
+        utilityAction.canceled += context => utilityInput = false;
+
+        interactAction.performed += context => interactInput = true;
+        interactAction.canceled += context => interactInput = false;
+
+        healAction.performed += context => healInput = true;
+        healAction.canceled += context => healInput = false;
     }
 
 
@@ -111,6 +146,42 @@ public class PlayerController : MonoBehaviour
         {
             moveAction.performed -= OnMove;
             moveAction.canceled -= OnMove;
+        }
+
+        if (primaryAction != null)
+        {
+            primaryAction.performed -= context => primaryInput = true;
+            primaryAction.canceled -= context => primaryInput = false;
+        }
+
+        if (secondaryAction != null)
+        {
+            secondaryAction.performed -= context => secondaryInput = true;
+            secondaryAction.canceled -= context => secondaryInput = false;
+        }
+
+        if (tertiaryAction != null)
+        {
+            tertiaryAction.performed -= context => tertiaryInput = true;
+            tertiaryAction.canceled -= context => tertiaryInput = false;
+        }
+
+        if (utilityAction != null)
+        {
+            utilityAction.performed -= context => utilityInput = true;
+            utilityAction.canceled -= context => utilityInput = false;
+        }
+
+        if (interactAction != null)
+        {
+            interactAction.performed -= context => interactInput = true;
+            interactAction.canceled -= context => interactInput = false;
+        }
+
+        if (healAction != null)
+        {
+            healAction.performed -= context => healInput = true;
+            healAction.canceled -= context => healInput = false;
         }
     }
 
