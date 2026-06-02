@@ -1,10 +1,9 @@
 using NaughtyAttributes;
 using UnityEngine;
-
+using System.Collections.Generic;
 
 public enum DamageType { Blood, Fire, Ice, Lightning, Poison, Light }
 public enum AOEShape { None, Circle, Rectangle, Cone, Line }
-
 public enum MobilityType { Dash, Teleport, Leap }
 
 [CreateAssetMenu(menuName = "Abilities/Base Ability")]
@@ -16,8 +15,8 @@ public class AbilityDataSO : ScriptableObject
     [TextArea] public string description;
 
     [Header("Cost & Cooldown")]
-    public float manaCost;
-    public float manaCostHeld; 
+    public float bloodCost;
+    public float bloodCostHeld; 
     public float cooldown;
 
     [Header("General")]
@@ -36,32 +35,27 @@ public class AbilityDataSO : ScriptableObject
     [ShowIf("chargeTime")] public float movementSpeedWhileCharging;                // 1 = normal speed, 0.5 = half speed, etc.
 
     [Header("AOE")]
-    public bool AOE;
-    [ShowIf("AOE")] public AOEShape aoeShape;
-    [ShowIf("AOE")] public float aoeRadius;          // for Circle
-    [ShowIf("AOE")] public Vector2 aoeSize;          // for Rectangle / Cone
-    [ShowIf("AOE")] public float aoeAngle;           // for Cone
+    public AOEShape aoeShape;
+    [ShowIf("AOEShape != AOEShape.None")] public float aoeRadius;                  // for Circle
+    [ShowIf("AOEShape != AOEShape.None")] public Vector2 aoeSize;                  // for Rectangle / Cone
+    [ShowIf("AOEShape != AOEShape.None")] public float aoeAngle;                   // for Cone
 
     [Header("Buff")]
     public bool appliesBuff;
-    [ShowIf("appliesBuff")] public StatusEffectSO buffEffect;
+    [ShowIf("appliesBuff")] public List<StatusEffectSO> buffEffect;
 
     [Header("Debuff")]
     public bool appliesDebuff;
-    [ShowIf("appliesDebuff")] public StatusEffectSO debuffEffect;
+    [ShowIf("appliesDebuff")] public List<StatusEffectSO> debuffEffect;
 
     [Header("Mobility")]
     public bool Mobility;
     [ShowIf("Mobility")] public MobilityType mobilityType;
     [ShowIf("Mobility")] public float distance;
     [ShowIf("Mobility")] public float speed;
-    [ShowIf("Mobility")] public bool invincibleDuringMove; // i-frames on dash
-    [ShowIf("Mobility")] public bool canPassThroughEnemies;   // teleport through enemies
-    [ShowIf("Mobility")] public bool damagesOnDash;         // dash into enemies deals damage
+    [ShowIf("Mobility")] public bool invincibleDuringMove;                         // i-frames on dash
+    [ShowIf("Mobility")] public bool damagesOnDash;                                // dash into enemies deals damage
     [ShowIf("Mobility")] public float dashDamage;
-    [ShowIf("Mobility")] public bool damagesOnArrival;     // blink into enemies deals damage
+    [ShowIf("Mobility")] public bool damagesOnArrival;                             // blink into enemies deals damage
     [ShowIf("Mobility")] public float arrivalDamage;
-
-    // Override
-    public virtual void Execute(GameObject caster, Vector2 targetPosition) { }
 }

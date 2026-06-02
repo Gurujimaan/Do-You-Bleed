@@ -15,11 +15,11 @@ MonoBehaviour:
   abilityName: Dash
   icon: {fileID: 0}
   description: Basic Dash
-  manaCost: 0
-  manaCostHeld: 0
-  cooldown: 0
+  bloodCost: 0
+  bloodCostHeld: 0
+  cooldown: 2
   range: 0
-  moveLock: 0
+  moveLock: 1
   mouseTargeting: 0
   projectile: {fileID: 0}
   damage: 0
@@ -27,21 +27,19 @@ MonoBehaviour:
   chargeTime: 0
   canMoveWhileCharging: 0
   movementSpeedWhileCharging: 0
-  AOE: 0
   aoeShape: 0
   aoeRadius: 0
   aoeSize: {x: 0, y: 0}
   aoeAngle: 0
   appliesBuff: 0
-  buffEffect: {fileID: 0}
+  buffEffect: []
   appliesDebuff: 0
-  debuffEffect: {fileID: 0}
-  Mobility: 0
+  debuffEffect: []
+  Mobility: 1
   mobilityType: 0
-  distance: 0
-  speed: 0
+  distance: 10
+  speed: 50
   invincibleDuringMove: 0
-  canPassThroughEnemies: 0
   damagesOnDash: 0
   dashDamage: 0
   damagesOnArrival: 0
