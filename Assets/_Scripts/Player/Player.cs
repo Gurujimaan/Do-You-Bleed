@@ -77,14 +77,11 @@ public class Player : Entity
     //public override List<AbilityDefinition> Abilities => abilities;
 
     [Header("References")]
-    public PlayerController movementController;
+    public PlayerController playerController;
     public Animator anim;
 
     public void Awake()
     {
-        anim = GetComponentInChildren<Animator>();
-        movementController = gameObject.GetComponent<PlayerController>();
-
         MaxHealth = baseMaxHealth;
         Power = basePower;
         MovementSpeed = baseMovementSpeed;

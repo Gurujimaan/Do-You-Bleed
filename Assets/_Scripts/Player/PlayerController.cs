@@ -46,9 +46,12 @@ public class PlayerController : MonoBehaviour
         Move();
     }
 
+    private void Update()
+    {
+        Abilities();
+    }
 
     #region Player Movement
-
     private void Move()
     {
         if (moveLocked)
@@ -79,7 +82,6 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 4 * Time.fixedDeltaTime);//rotate the player to face the direction they are moving
     }
 
-
     /// <summary>
     /// This coroutine locks the player's movement and takes them to a designated position at a constant speed
     /// TODO: Lock the player's combat abilities and do something to avoid clipping through terrain - Jae
@@ -102,6 +104,51 @@ public class PlayerController : MonoBehaviour
         moveLocked = false;
     }
 
+
+    #endregion
+
+    #region Player Abilities
+
+    private void Abilities()
+    {
+        if (utilityInput)
+        {
+            Utility();
+        }
+        else if (primaryInput)
+        {
+            Primary();
+        }
+        else if (secondaryInput)
+        {
+            Secondary();
+        }
+        else if (tertiaryInput)
+        {
+            Tertiary();
+        }
+
+    }
+
+    private void Primary()
+    {
+
+    }
+
+    private void Secondary()
+    {
+
+    }
+
+    private void Tertiary()
+    {
+
+    }
+
+    private void Utility()
+    {
+
+    }
 
     #endregion
 

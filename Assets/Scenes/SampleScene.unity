@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -206,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3420201, y: 0, z: 0, w: 0.9396927}
-  m_LocalPosition: {x: 0, y: 20, z: -23.92}
+  m_LocalPosition: {x: 0, y: 20, z: -23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -256,6 +257,21 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abeb3ae91f445f6498c8ebf108bb9774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  target: {fileID: 1093498418}
+  smoothSpeed: 5
+  offset: {x: 0, y: 20, z: -23}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,8 +687,8 @@ GameObject:
   - component: {fileID: 1093498423}
   - component: {fileID: 1093498421}
   - component: {fileID: 1093498420}
-  - component: {fileID: 1093498419}
   - component: {fileID: 1093498422}
+  - component: {fileID: 1093498419}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -790,8 +806,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   rb: {fileID: 1093498421}
   playerInput: {fileID: 1093498420}
-  player: {fileID: 0}
+  player: {fileID: 1093498422}
   moveInput: {x: 0, y: 0}
+  primaryInput: 0
+  secondaryInput: 0
+  tertiaryInput: 0
+  utilityInput: 0
+  interactInput: 0
+  healInput: 0
   go: {fileID: 0}
   cam: {fileID: 330585545}
 --- !u!114 &1093498420
@@ -870,7 +892,7 @@ MonoBehaviour:
   baseMovementSpeed: 5
   baseMaxBlood: 100
   baseCurrentBlood: 100
-  movementController: {fileID: 1093498419}
+  playerController: {fileID: 0}
   anim: {fileID: 1093498423}
 --- !u!95 &1093498423
 Animator:

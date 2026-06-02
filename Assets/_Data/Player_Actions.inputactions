@@ -34,7 +34,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Seal",
+                    "name": "Tertiary",
                     "type": "Button",
                     "id": "415c4c4f-af84-41ea-a662-8c3c5b3af13b",
                     "expectedControlType": "",
@@ -188,7 +188,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Seal",
+                    "action": "Tertiary",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
