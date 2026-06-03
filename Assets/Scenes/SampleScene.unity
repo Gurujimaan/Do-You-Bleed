@@ -505,7 +505,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0.5
   m_OnValueChanged:
@@ -899,9 +899,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 10
+  m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 8
+  m_Value: 0.8
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1473,12 +1473,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   teamID: 0
   baseMaxHealth: 100
-  baseCurrentHealth: 100
+  baseCurrentHealth: 20
   basePower: 10
   baseMovementSpeed: 5
   baseMaxBlood: 100
-  baseCurrentBlood: 100
-  playerController: {fileID: 0}
+  baseCurrentBlood: 80
+  baseAbilities:
+  - {fileID: 11400000, guid: 03c622681fbe4a4488964aa9a02464a1, type: 2}
+  playerController: {fileID: 1093498419}
   anim: {fileID: 1093498423}
 --- !u!95 &1093498423
 Animator:
@@ -1892,6 +1894,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c02433d5c329bc45b090dcdf2ff714a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HUD
+  health: {fileID: 341326463}
+  blood: {fileID: 574364327}
 --- !u!1 &1988502368
 GameObject:
   m_ObjectHideFlags: 0

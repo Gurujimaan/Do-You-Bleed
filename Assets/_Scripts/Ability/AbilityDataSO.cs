@@ -31,8 +31,8 @@ public class AbilityDataSO : ScriptableObject
 
     [Header("Charge")]
     public float chargeTime;                                                       // 0 = instant
-    [ShowIf("chargeTime")] public bool canMoveWhileCharging;
-    [ShowIf("chargeTime")] public float movementSpeedWhileCharging;                // 1 = normal speed, 0.5 = half speed, etc.
+    [ShowIf("chargeTime != 0")] public bool canMoveWhileCharging;
+    [ShowIf("chargeTime != 0")] public float movementSpeedWhileCharging;           // 1 = normal speed, 0.5 = half speed, etc.
 
     [Header("AOE")]
     public AOEShape aoeShape;

@@ -22,6 +22,7 @@ public class Player : Entity
     public float baseMovementSpeed = 5;
     public float baseMaxBlood = 100;
     public float baseCurrentBlood = 100;
+    public List<AbilityDataSO> baseAbilities = new List<AbilityDataSO>();
 
     // ---- Saved Vars ----      These are the actual values used in the game
     private float currentMaxHealth;
@@ -30,6 +31,7 @@ public class Player : Entity
     private float currentMovementSpeed;
     private float currentMaxBlood;
     private float currentBlood;
+    private List<AbilityDataSO> currentAbilities = new List<AbilityDataSO>();
 
     // ---- Public Accessors ----   !! Only use these to access/edit the SyncVar values !!
     public override float MaxHealth
@@ -70,6 +72,14 @@ public class Player : Entity
             UpdatePlayerBlood();
         }
     }
+    public override List<AbilityDataSO> Abilities
+    {
+        get => currentAbilities;
+        set
+        {
+            currentAbilities = value;
+        }
+    }
     #endregion
 
     //[Header("Attack Settings")]
@@ -92,6 +102,7 @@ public class Player : Entity
     {
         CurrentHealth = MaxHealth;
         CurrentBlood = MaxBlood;
+        Abilities = baseAbilities;
     }
 
     private void Update()

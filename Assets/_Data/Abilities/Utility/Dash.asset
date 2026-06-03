@@ -35,7 +35,7 @@ MonoBehaviour:
   buffEffect: []
   appliesDebuff: 0
   debuffEffect: []
-  Mobility: 1
+  Mobility: 0
   mobilityType: 0
   distance: 10
   speed: 50

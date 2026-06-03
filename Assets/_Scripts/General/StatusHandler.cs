@@ -7,10 +7,12 @@ public class StatusHandler : MonoBehaviour
     public Entity entity;
     public List<StatusEffectSO> statusEffectsApplied;
 
-    public void HandleStatus(StatusEffectSO status)
+    public void HandleStatus(StatusEffect status)
     {
-        statusEffectsApplied.Add(status);
-        StartCoroutine(status.ProcStatus(entity, OnCoroutineComplete));
+        StatusEffectSO statusEffectSO = ScriptableObject.CreateInstance<StatusEffectSO>();
+        statusEffectSO.statusEffect = status;
+        statusEffectsApplied.Add(statusEffectSO);
+        StartCoroutine(statusEffectSO.ProcStatus(entity, OnCoroutineComplete));
     }
 
     public void OnCoroutineComplete(StatusEffectSO status)

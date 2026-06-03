@@ -1,16 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-public enum BuffType { Cooldown, MoveSpeed, Damage, Defense, Regen, Shield }
-public enum DebuffType { MoveSpeed, Damage, Defense, Bleed, Knockback }
-public enum StatusEffect{ Buff, Debuff }
+public enum StatusEffect
+{ 
+    Speed_Buff, Damage_Buff, Defense_Buff, Regen_Buff, Shield_Buff, CD_Buff,
+    Speed_Debuff, Damage_Debuff, Bleed_Debuff, Knockback_Debuff
+}
 
 [CreateAssetMenu(fileName = "StatusEffectSO", menuName = "StatusEffect")]
 public class StatusEffectSO : ScriptableObject
 {
-    public StatusEffect status;
-    public BuffType buffType;
-    public DebuffType debuffType;
+    public StatusEffect statusEffect;
 
     public Sprite icon;
     public float statusAmount;
@@ -19,6 +19,9 @@ public class StatusEffectSO : ScriptableObject
 
     public IEnumerator ProcStatus(Entity target, System.Action<StatusEffectSO> onComplete)
     {
+
+
+
         float duration = statusDuration;
         while (duration > 0)
         {
