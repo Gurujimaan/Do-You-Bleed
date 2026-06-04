@@ -78,6 +78,7 @@ public class Player : Entity
         set
         {
             currentAbilities = value;
+            UpdatePlayerAbilities();
         }
     }
     #endregion
@@ -88,6 +89,8 @@ public class Player : Entity
 
     [Header("References")]
     public PlayerController playerController;
+    public AbilityHandler abilityHandler;
+    public StatusHandler statusHandler;
     public Animator anim;
 
     public void Awake()
@@ -103,11 +106,6 @@ public class Player : Entity
         CurrentHealth = MaxHealth;
         CurrentBlood = MaxBlood;
         Abilities = baseAbilities;
-    }
-
-    private void Update()
-    {
-
     }
 
     #region API
@@ -147,9 +145,9 @@ public class Player : Entity
         GameEvents.Instance.PlayerBloodChanged(CurrentBlood / MaxBlood);       
     }
 
-    public void UpdateAbilities()
+    public void UpdatePlayerAbilities()
     {
-       
+        GameEvents.Instance.PlayerAbilitiesChanged(Abilities);
     }
 
     #endregion

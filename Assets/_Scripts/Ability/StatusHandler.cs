@@ -5,7 +5,12 @@ using UnityEngine;
 public class StatusHandler : MonoBehaviour
 {
     public Entity entity;
-    public List<StatusEffectSO> statusEffectsApplied;
+    public List<StatusEffectSO> statusEffectsApplied = new List<StatusEffectSO>();
+
+    private void Awake()
+    {
+        entity = GetComponent<Entity>();
+    }
 
     public void HandleStatus(StatusEffect status)
     {

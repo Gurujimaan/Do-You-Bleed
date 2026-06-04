@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa14572863359274ab77c675d7c9a74f, type: 3}
-  m_Name: Dash
+  m_Name: Empty
   m_EditorClassIdentifier: Assembly-CSharp::AbilityDataSO
-  abilityName: Dash
+  abilityName: 
   icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  description: Basic Dash
+  description: Empty
   bloodCost: 0
   bloodCostHeld: 0
-  cooldown: 2
+  cooldown: 0
   range: 0
-  moveLock: 1
+  moveLock: 0
   mouseTargeting: 0
   projectile: {fileID: 0}
   damage: 0

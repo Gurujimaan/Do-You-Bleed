@@ -1,16 +1,24 @@
+using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Entity))]
 public class AbilityHandler : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Entity entity;
+
+    private void Awake()
     {
-        
+        entity = GetComponent<Entity>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void UseAbility(AbilityDataSO abilityData)
     {
-        
+       if (entity is Player p)
+       {
+            if (p.CurrentBlood < abilityData.bloodCost) return;                //Don't have enough blood to use the ability
+            else p.CurrentBlood -= abilityData.bloodCost;                      //Pay the blood cost
+       }
+
+       
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,15 +7,15 @@ public class HUD : MonoBehaviour
     [Header("References")]
     public Slider health;
     public Slider blood;
+    public List<AbilityUIHolder> abilityUIHolders;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void OnEnable()
     {
         GameEvents.Instance.OnPlayerHealthChanged += UpdateHealth;
         GameEvents.Instance.OnPlayerBloodChanged += UpdateBlood;
+        GameEvents.Instance.OnPlayerAbilitiesChanged += UpdatePlayerAbilities;
     }
 
-    // Update is called once per frame
     private void UpdateHealth(float newHealth)
     {
         health.value = newHealth;
@@ -25,9 +26,18 @@ public class HUD : MonoBehaviour
         blood.value = newBlood;
     }
 
+    private void UpdatePlayerAbilities(List<AbilityDataSO> newAbilities)
+    {
+        for (int i = 0; i < newAbilities.Count; i++)
+        {
+            abilityUIHolders[i].abilityData = newAbilities[i];
+        }
+    }
+
     private void OnDisable()
     {
         GameEvents.Instance.OnPlayerHealthChanged -= UpdateHealth;
         GameEvents.Instance.OnPlayerBloodChanged -= UpdateBlood;
+        GameEvents.Instance.OnPlayerAbilitiesChanged -= UpdatePlayerAbilities;
     }
 }

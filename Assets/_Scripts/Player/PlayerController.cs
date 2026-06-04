@@ -6,9 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField]Rigidbody rb;
+    [SerializeField] Rigidbody rb;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] Player player;
+    [SerializeField] AbilityHandler abilityHandler;
 
     [Header("Player Input Settings")]
     private InputAction moveAction;      // WASD
@@ -113,41 +114,20 @@ public class PlayerController : MonoBehaviour
     {
         if (utilityInput)
         {
-            Utility();
+            abilityHandler.UseAbility(player.Abilities[3]);
         }
         else if (primaryInput)
         {
-            Primary();
+            abilityHandler.UseAbility(player.Abilities[0]);
         }
         else if (secondaryInput)
         {
-            Secondary();
+            abilityHandler.UseAbility(player.Abilities[1]);
         }
         else if (tertiaryInput)
         {
-            Tertiary();
+            abilityHandler.UseAbility(player.Abilities[2]);
         }
-
-    }
-
-    private void Primary()
-    {
-
-    }
-
-    private void Secondary()
-    {
-
-    }
-
-    private void Tertiary()
-    {
-
-    }
-
-    private void Utility()
-    {
-
     }
 
     #endregion
