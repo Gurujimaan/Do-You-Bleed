@@ -18,7 +18,6 @@ public class AbilityHandler : MonoBehaviour
             if (p.CurrentBlood < abilityData.bloodCost) return;                //Don't have enough blood to use the ability
             else p.CurrentBlood -= abilityData.bloodCost;                      //Pay the blood cost
        }
-
-       
+       if (abilityData.moveLock) entity.moveLocked = true;                     //Lock movement if the ability requires it
     }
 }

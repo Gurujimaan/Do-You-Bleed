@@ -8,6 +8,7 @@ public class Hitbox : MonoBehaviour
     public TeamID TeamID => owner.TeamID;
 
     public int DamageAmount = 10;
+    public DamageType damageType;
 
     void Start()
     {

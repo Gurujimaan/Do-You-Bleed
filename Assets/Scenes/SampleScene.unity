@@ -1760,8 +1760,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3b23fe5505b3d6f4b9222b23cab65fb0, type: 2}
   - {fileID: 11400000, guid: 03c622681fbe4a4488964aa9a02464a1, type: 2}
   playerController: {fileID: 1093498419}
-  abilityHandler: {fileID: 0}
-  statusHandler: {fileID: 0}
+  abilityHandler: {fileID: 1093498425}
+  statusHandler: {fileID: 1093498424}
   anim: {fileID: 1093498423}
 --- !u!95 &1093498423
 Animator:
@@ -1811,7 +1811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c985a23b593ec4e8acdd19d1a3d798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AbilityHandler
-  entity: {fileID: 0}
+  entity: {fileID: 1093498422}
 --- !u!1 &1108193034
 GameObject:
   m_ObjectHideFlags: 0

@@ -81,6 +81,11 @@ public class Player : Entity
             UpdatePlayerAbilities();
         }
     }
+    public override bool moveLocked
+    {
+        get => playerController.moveLocked;
+        set => playerController.moveLocked = value;
+    }
     #endregion
 
     //[Header("Attack Settings")]
@@ -110,7 +115,7 @@ public class Player : Entity
 
     #region API
 
-    public override void TakeDamage(float attackPower)
+    public override void TakeDamage(float attackPower, DamageType type)
     {
         float damage = Mathf.Max(attackPower, 0);
         CurrentHealth -= damage;

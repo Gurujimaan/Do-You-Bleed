@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
 
         if (otherTeam != entity.TeamID)
         {
-            entity.TakeDamage(hit.DamageAmount);
+            entity.TakeDamage(hit.DamageAmount, hit.damageType);
         }
     }
 }

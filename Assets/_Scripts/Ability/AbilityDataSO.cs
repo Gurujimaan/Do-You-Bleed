@@ -23,22 +23,25 @@ public class AbilityDataSO : ScriptableObject
     public float range;
     public bool moveLock;
     public bool mouseTargeting;
+    [HideIf("mouseTargeting")] public bool travelWithEntity;
     public ProjectileSO projectile;
 
     [Header("Damage")]
     public float damage;
     public DamageType damageType;
 
+    private bool IsCharging => chargeTime != 0;
     [Header("Charge")]
     public float chargeTime;                                                       // 0 = instant
-    [ShowIf("chargeTime != 0")] public bool canMoveWhileCharging;
-    [ShowIf("chargeTime != 0")] public float movementSpeedWhileCharging;           // 1 = normal speed, 0.5 = half speed, etc.
+    [ShowIf("IsCharging")] public bool canMoveWhileCharging;
+    [ShowIf("IsCharging")] public float movementSpeedWhileCharging;           // 1 = normal speed, 0.5 = half speed, etc.
 
+    private bool HasAOE => aoeShape != AOEShape.None;
     [Header("AOE")]
     public AOEShape aoeShape;
-    [ShowIf("AOEShape != AOEShape.None")] public float aoeRadius;                  // for Circle
-    [ShowIf("AOEShape != AOEShape.None")] public Vector2 aoeSize;                  // for Rectangle / Cone
-    [ShowIf("AOEShape != AOEShape.None")] public float aoeAngle;                   // for Cone
+    [ShowIf("HasAOE")] public float aoeRadius;                  // for Circle
+    [ShowIf("HasAOE")] public Vector2 aoeSize;                  // for Rectangle / Cone
+    [ShowIf("HasAOE")] public float aoeAngle;                   // for Cone
 
     [Header("Buff")]
     public bool appliesBuff;

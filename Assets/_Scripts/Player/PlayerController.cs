@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     public Camera cam;
 
     [Header("Runtime Data")]
-    private bool moveLocked;
+    public bool moveLocked;
 
     private void OnEnable()
     { 

@@ -17,7 +17,8 @@ public abstract class Entity : MonoBehaviour
     public abstract float Power { get; set; }
     public abstract float MovementSpeed { get; set; }
     public abstract List<AbilityDataSO> Abilities { get; set; }
-    public abstract void TakeDamage(float amount);
+    public abstract bool moveLocked { get; set; }   
+    public abstract void TakeDamage(float amount, DamageType type);
     public abstract void TakeHealing(float amount);
     public abstract void Die();
 }
