@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
     {
         if (moveLocked)
         {
-            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
             return; // Locks controls if movement is being halted by an ability, effect, etc.
         }
 
@@ -114,19 +113,19 @@ public class PlayerController : MonoBehaviour
     {
         if (utilityInput)
         {
-            abilityHandler.UseAbility(player.Abilities[3]);
+            abilityHandler.UseAbility(player.Abilities[3], (Vector3)moveInput);
         }
         else if (primaryInput)
         {
-            abilityHandler.UseAbility(player.Abilities[0]);
+            abilityHandler.UseAbility(player.Abilities[0], (Vector3)moveInput);
         }
         else if (secondaryInput)
         {
-            abilityHandler.UseAbility(player.Abilities[1]);
+            abilityHandler.UseAbility(player.Abilities[1], (Vector3)moveInput);
         }
         else if (tertiaryInput)
         {
-            abilityHandler.UseAbility(player.Abilities[2]);
+            abilityHandler.UseAbility(player.Abilities[2], (Vector3)moveInput);
         }
     }
 

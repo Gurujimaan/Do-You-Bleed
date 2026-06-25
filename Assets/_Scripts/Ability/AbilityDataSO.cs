@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public enum DamageType { Blood, Fire, Ice, Lightning, Poison, Light }
 public enum AOEShape { None, Circle, Rectangle, Cone, Line }
-public enum MobilityType { Dash, Teleport, Leap }
+public enum MobilityType { Dash, Teleport }
 
 [CreateAssetMenu(menuName = "Abilities/Base Ability")]
 public class AbilityDataSO : ScriptableObject
@@ -20,8 +20,9 @@ public class AbilityDataSO : ScriptableObject
     public float cooldown;
 
     [Header("General")]
-    public float range;
+    public float range;                 //enemies only
     public bool moveLock;
+    public float castTime;
     public bool mouseTargeting;
     [HideIf("mouseTargeting")] public bool travelWithEntity;
     public ProjectileSO projectile;
@@ -32,7 +33,7 @@ public class AbilityDataSO : ScriptableObject
 
     private bool IsCharging => chargeTime != 0;
     [Header("Charge")]
-    public float chargeTime;                                                       // 0 = instant
+    public float chargeTime;                                                  // 0 = instant
     [ShowIf("IsCharging")] public bool canMoveWhileCharging;
     [ShowIf("IsCharging")] public float movementSpeedWhileCharging;           // 1 = normal speed, 0.5 = half speed, etc.
 
@@ -56,9 +57,9 @@ public class AbilityDataSO : ScriptableObject
     [ShowIf("Mobility")] public MobilityType mobilityType;
     [ShowIf("Mobility")] public float distance;
     [ShowIf("Mobility")] public float speed;
-    [ShowIf("Mobility")] public bool invincibleDuringMove;                         // i-frames on dash
-    [ShowIf("Mobility")] public bool damagesOnDash;                                // dash into enemies deals damage
+    [ShowIf("Mobility")] public bool invincibleDuringMove;                     // i-frames on dash
+    [ShowIf("Mobility")] public bool damagesOnDash;                            // dash into enemies deals damage
     [ShowIf("Mobility")] public float dashDamage;
-    [ShowIf("Mobility")] public bool damagesOnArrival;                             // blink into enemies deals damage
+    [ShowIf("Mobility")] public bool damagesOnArrival;                         // blink into enemies deals damage
     [ShowIf("Mobility")] public float arrivalDamage;
 }

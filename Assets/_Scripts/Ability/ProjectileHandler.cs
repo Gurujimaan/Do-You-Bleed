@@ -2,14 +2,7 @@ using UnityEngine;
 
 public class ProjectileHandler : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
+    void Shoot(ProjectileSO projectileData, Vector3 direction)
     {
         
     }

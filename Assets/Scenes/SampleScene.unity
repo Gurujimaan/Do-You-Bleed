@@ -1668,7 +1668,7 @@ MonoBehaviour:
   rb: {fileID: 1093498421}
   playerInput: {fileID: 1093498420}
   player: {fileID: 1093498422}
-  abilityHandler: {fileID: 0}
+  abilityHandler: {fileID: 1093498425}
   moveInput: {x: 0, y: 0}
   primaryInput: 0
   secondaryInput: 0
@@ -1678,6 +1678,7 @@ MonoBehaviour:
   healInput: 0
   go: {fileID: 0}
   cam: {fileID: 330585545}
+  moveLocked: 0
 --- !u!114 &1093498420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1757,7 +1758,7 @@ MonoBehaviour:
   baseAbilities:
   - {fileID: 11400000, guid: 3b23fe5505b3d6f4b9222b23cab65fb0, type: 2}
   - {fileID: 11400000, guid: 3b23fe5505b3d6f4b9222b23cab65fb0, type: 2}
-  - {fileID: 11400000, guid: 3b23fe5505b3d6f4b9222b23cab65fb0, type: 2}
+  - {fileID: 11400000, guid: 90cdefeaa8142e846bd2f37385a2d709, type: 2}
   - {fileID: 11400000, guid: 03c622681fbe4a4488964aa9a02464a1, type: 2}
   playerController: {fileID: 1093498419}
   abilityHandler: {fileID: 1093498425}

@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
         Hitbox hit = other.GetComponent<Hitbox>();
         TeamID otherTeam = hit.TeamID;
 
-        if (otherTeam != entity.TeamID)
+        if (otherTeam != entity.TeamID && !entity.isInvincible)
         {
             entity.TakeDamage(hit.DamageAmount, hit.damageType);
         }
