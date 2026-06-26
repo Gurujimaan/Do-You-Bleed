@@ -38,5 +38,14 @@ public class AbilityUIHolder : MonoBehaviour
     public void SetCooldown(float cooldownTime)
     {
         cooldownText.text = Mathf.CeilToInt(cooldownTime).ToString();
+
+        if(cooldownTime > 0)
+        {
+            cooldownText.gameObject.SetActive(true);
+        }
+        else
+        {
+            cooldownText.gameObject.SetActive(false);
+        }
     }
 }

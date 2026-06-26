@@ -21,7 +21,7 @@ MonoBehaviour:
   range: 0
   moveLock: 1
   castTime: 0
-  mouseTargeting: 0
+  mouseTargeting: 1
   travelWithEntity: 0
   projectile: {fileID: 0}
   damage: 0

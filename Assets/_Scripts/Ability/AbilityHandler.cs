@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class AbilityHandler : MonoBehaviour
 {
     public Entity entity;
+    public float targetYLevel;
 
     private void Awake()
     {
@@ -24,14 +25,16 @@ public class AbilityHandler : MonoBehaviour
 
             if (abilityData.mouseTargeting)
             {
+                Plane mathematicalPlane = new Plane(Vector3.up, new Vector3(0, targetYLevel, 0));
+
                 Mouse mouse = Mouse.current;
                 Camera camera = Camera.main;
 
                 Ray ray = camera.ScreenPointToRay(mouse.position.ReadValue());
 
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                if (mathematicalPlane.Raycast(ray, out float enterDistance))
                 {
-                    dir = (hit.point - entity.transform.position).normalized;   //Set the direction to the point where the mouse is pointing
+                    dir = (ray.GetPoint(enterDistance) - entity.transform.position).normalized;   //Set the direction to the point where the mouse is pointing
                 }
             }
         }
