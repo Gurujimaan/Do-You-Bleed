@@ -66,6 +66,7 @@ public class AbilityHandler : MonoBehaviour
 
     private IEnumerator LockMovement(AbilityDataSO abilityData)
     {
+        if (entity is Player p) p.casting = true;
         entity.moveLocked = true;
         float time = abilityData.castTime;
         if (abilityData.Mobility) time = abilityData.castTime + (abilityData.distance / abilityData.speed);   //If the ability has mobility, add the time it takes to travel the distance to the cast time
@@ -73,6 +74,7 @@ public class AbilityHandler : MonoBehaviour
         yield return new WaitForSeconds(time);
         Debug.Log("cast time over");
         entity.moveLocked = false;
+        if (entity is Player pl) pl.casting = false;
     }
 
     #region Mobility

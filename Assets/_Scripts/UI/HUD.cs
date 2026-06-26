@@ -14,6 +14,7 @@ public class HUD : MonoBehaviour
         GameEvents.Instance.OnPlayerHealthChanged += UpdateHealth;
         GameEvents.Instance.OnPlayerBloodChanged += UpdateBlood;
         GameEvents.Instance.OnPlayerAbilitiesChanged += UpdatePlayerAbilities;
+        GameEvents.Instance.OnPlayerAbilityCooldown += UpdateAbilityCooldown;
     }
 
     private void UpdateHealth(float newHealth)
@@ -34,10 +35,19 @@ public class HUD : MonoBehaviour
         }
     }
 
+    private void UpdateAbilityCooldown(int index, float cooldownTime)
+    {
+        if (index >= 0 && index < abilityUIHolders.Count)
+        {
+            abilityUIHolders[index].SetCooldown(cooldownTime);
+        }
+    }
+
     private void OnDisable()
     {
         GameEvents.Instance.OnPlayerHealthChanged -= UpdateHealth;
         GameEvents.Instance.OnPlayerBloodChanged -= UpdateBlood;
         GameEvents.Instance.OnPlayerAbilitiesChanged -= UpdatePlayerAbilities;
+        GameEvents.Instance.OnPlayerAbilityCooldown -= UpdateAbilityCooldown;
     }
 }

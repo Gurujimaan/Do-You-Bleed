@@ -86,9 +86,8 @@ public class Player : Entity
         get => playerController.moveLocked;
         set => playerController.moveLocked = value;
     }
-
+    public override bool casting { get; set; }
     public override bool isInvincible { get; set; }
-
     public override Rigidbody rb => playerController.rb;
     #endregion
 

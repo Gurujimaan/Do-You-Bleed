@@ -112,6 +112,8 @@ public class PlayerController : MonoBehaviour
 
     private void Abilities()
     {
+        if (player.casting) return;
+
         if (utilityInput && abilityCooldowns[3] <= 0)
         {
             abilityHandler.UseAbility(player.Abilities[3], moveInput);
@@ -138,10 +140,12 @@ public class PlayerController : MonoBehaviour
             abilityCooldowns[index] = abilityDataSO.cooldown;
             while (abilityCooldowns[index] > 0)
             {
+                GameEvents.Instance.PlayerAbilityCooldown(index, abilityCooldowns[index]);
                 abilityCooldowns[index] -= Time.deltaTime;
                 yield return null;
             }
             abilityCooldowns[index] = 0;
+            GameEvents.Instance.PlayerAbilityCooldown(index, 0);
         }
     }
 

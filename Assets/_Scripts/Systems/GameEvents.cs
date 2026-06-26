@@ -8,6 +8,7 @@ public class GameEvents : Singleton<GameEvents>
     public event Action<float> OnPlayerHealthChanged;
     public event Action<float> OnPlayerBloodChanged;
     public event Action<List<AbilityDataSO>> OnPlayerAbilitiesChanged;
+    public event Action<int, float> OnPlayerAbilityCooldown;
 
     public void PlayerHealthChanged(float newHealth)
     {
@@ -22,5 +23,10 @@ public class GameEvents : Singleton<GameEvents>
     public void PlayerAbilitiesChanged(List<AbilityDataSO> newAbilities)
     {
         OnPlayerAbilitiesChanged?.Invoke(newAbilities);
+    }
+
+    public void PlayerAbilityCooldown(int abilityIndex, float cooldownTime)
+    {
+        OnPlayerAbilityCooldown?.Invoke(abilityIndex, cooldownTime);
     }
 }
