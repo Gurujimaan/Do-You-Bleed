@@ -13,9 +13,9 @@ public class AbilityHandler : MonoBehaviour
         entity = GetComponent<Entity>();
     }
 
-    public void UseAbility(AbilityDataSO abilityData, Vector3? targetDirection)
+    public void UseAbility(AbilityDataSO abilityData, Vector3 targetDirection)
     {
-        Vector3 dir = targetDirection?.normalized ?? Vector3.up;                //Default to up if no target direction is provided
+        Vector3 dir = new Vector3(targetDirection.x, 0, targetDirection.y).normalized;
 
         if (entity is Player p)
         {
@@ -36,7 +36,7 @@ public class AbilityHandler : MonoBehaviour
             }
         }
                      
-        if (abilityData.moveLock) LockMovement(abilityData);                    //Lock movement if the ability requires it
+        if (abilityData.moveLock) StartCoroutine(LockMovement(abilityData));                    //Lock movement if the ability requires it
 
         if (abilityData.projectile != null)
         {
@@ -56,12 +56,21 @@ public class AbilityHandler : MonoBehaviour
                 }
             }
         }
+
+        if (entity is Player pl)
+        {
+            StartCoroutine(pl.playerController.StartCooldown(abilityData));
+        }
     }
+
 
     private IEnumerator LockMovement(AbilityDataSO abilityData)
     {
         entity.moveLocked = true;
-        yield return new WaitForSeconds(abilityData.castTime);
+        float time = abilityData.castTime;
+        if (abilityData.Mobility) time = abilityData.castTime + (abilityData.distance / abilityData.speed);   //If the ability has mobility, add the time it takes to travel the distance to the cast time
+
+        yield return new WaitForSeconds(time);
         Debug.Log("cast time over");
         entity.moveLocked = false;
     }
@@ -72,16 +81,25 @@ public class AbilityHandler : MonoBehaviour
     {
         Vector3 startPosition = entity.transform.position;
         Vector3 targetPosition = startPosition + direction * distance;
+
+        float duration = distance / speed;
+        float elapsedTime = 0f;
+
         if (invincibleDuringMove)
         {
             entity.SetInvincibility(true);
         }
-        while (Vector3.Distance(entity.transform.position, targetPosition) > 0.1f)
+
+        while (elapsedTime < duration)
         {
-            entity.transform.position = Vector3.MoveTowards(entity.transform.position, targetPosition, speed * Time.deltaTime);
-            Debug.Log("dashing");
+            elapsedTime += Time.deltaTime;
+            float percent = elapsedTime / duration;
+            entity.transform.position = Vector3.Lerp(startPosition, targetPosition, percent);
+
             yield return null;
         }
+        entity.transform.position = targetPosition;
+
         if (invincibleDuringMove)
         {
             entity.SetInvincibility(false);

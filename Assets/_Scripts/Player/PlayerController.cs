@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] Rigidbody rb;
+    [SerializeField] public Rigidbody rb;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] Player player;
     [SerializeField] AbilityHandler abilityHandler;
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Runtime Data")]
     public bool moveLocked;
+    public List<float> abilityCooldowns = new List<float>();
 
     private void OnEnable()
     { 
@@ -111,21 +112,36 @@ public class PlayerController : MonoBehaviour
 
     private void Abilities()
     {
-        if (utilityInput)
+        if (utilityInput && abilityCooldowns[3] <= 0)
         {
-            abilityHandler.UseAbility(player.Abilities[3], (Vector3)moveInput);
+            abilityHandler.UseAbility(player.Abilities[3], moveInput);
         }
-        else if (primaryInput)
+        else if (primaryInput && abilityCooldowns[0] <= 0)
         {
-            abilityHandler.UseAbility(player.Abilities[0], (Vector3)moveInput);
+            abilityHandler.UseAbility(player.Abilities[0], moveInput);
         }
-        else if (secondaryInput)
+        else if (secondaryInput && abilityCooldowns[1] <= 0)
         {
-            abilityHandler.UseAbility(player.Abilities[1], (Vector3)moveInput);
+            abilityHandler.UseAbility(player.Abilities[1], moveInput);
         }
-        else if (tertiaryInput)
+        else if (tertiaryInput && abilityCooldowns[2] <= 0)
         {
-            abilityHandler.UseAbility(player.Abilities[2], (Vector3)moveInput);
+            abilityHandler.UseAbility(player.Abilities[2], moveInput);
+        }
+    }
+
+    public IEnumerator StartCooldown(AbilityDataSO abilityDataSO)
+    {
+        int index = player.Abilities.IndexOf(abilityDataSO);
+        if (index >= 0 && index < abilityCooldowns.Count)
+        {
+            abilityCooldowns[index] = abilityDataSO.cooldown;
+            while (abilityCooldowns[index] > 0)
+            {
+                abilityCooldowns[index] -= Time.deltaTime;
+                yield return null;
+            }
+            abilityCooldowns[index] = 0;
         }
     }
 

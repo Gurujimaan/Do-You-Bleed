@@ -17,10 +17,10 @@ MonoBehaviour:
   description: Basic Dash
   bloodCost: 0
   bloodCostHeld: 0
-  cooldown: 2
+  cooldown: 3
   range: 0
   moveLock: 1
-  castTime: 0.2
+  castTime: 0
   mouseTargeting: 0
   travelWithEntity: 0
   projectile: {fileID: 0}
@@ -40,7 +40,7 @@ MonoBehaviour:
   Mobility: 1
   mobilityType: 0
   distance: 10
-  speed: 20
+  speed: 30
   invincibleDuringMove: 0
   damagesOnDash: 0
   dashDamage: 0

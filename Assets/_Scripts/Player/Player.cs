@@ -88,6 +88,8 @@ public class Player : Entity
     }
 
     public override bool isInvincible { get; set; }
+
+    public override Rigidbody rb => playerController.rb;
     #endregion
 
     //[Header("Attack Settings")]

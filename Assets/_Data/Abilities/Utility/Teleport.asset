@@ -39,7 +39,7 @@ MonoBehaviour:
   debuffEffect: []
   Mobility: 1
   mobilityType: 1
-  distance: 12
+  distance: 15
   speed: 50
   invincibleDuringMove: 0
   damagesOnDash: 0
