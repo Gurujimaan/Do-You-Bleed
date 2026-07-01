@@ -9,7 +9,7 @@ public class HUD : MonoBehaviour
     public Slider blood;
     public List<AbilityUIHolder> abilityUIHolders;
 
-    void OnEnable()
+    void Start()
     {
         GameEvents.Instance.OnPlayerHealthChanged += UpdateHealth;
         GameEvents.Instance.OnPlayerBloodChanged += UpdateBlood;
@@ -43,7 +43,7 @@ public class HUD : MonoBehaviour
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         GameEvents.Instance.OnPlayerHealthChanged -= UpdateHealth;
         GameEvents.Instance.OnPlayerBloodChanged -= UpdateBlood;

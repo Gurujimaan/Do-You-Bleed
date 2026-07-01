@@ -6,12 +6,13 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Entity))]
 public class AbilityHandler : MonoBehaviour
 {
-    public Entity entity;
-    public float targetYLevel;
+    private Entity entity;
+    private float targetYLevel;
 
     private void Awake()
     {
         entity = GetComponent<Entity>();
+        targetYLevel = transform.position.y;
     }
 
     public void UseAbility(AbilityDataSO abilityData, Vector3 targetDirection)

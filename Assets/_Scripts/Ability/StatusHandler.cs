@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Entity))]
 public class StatusHandler : MonoBehaviour
 {
-    public Entity entity;
+    private Entity entity;
     public List<StatusEffectSO> statusEffectsApplied = new List<StatusEffectSO>();
 
     private void Awake()

@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerController))]
-public class Player : Entity
+public class Enemy : Entity
 {
     [Header("State Data")]
     [SerializeField] private TeamID teamID;
@@ -15,13 +13,12 @@ public class Player : Entity
 
     [Header("Stats")]
     #region Stats
-    // ---- Base Values ----    Inspector values to initialize SyncVars (For Designers)
+    // ---- Base Values ----    Inspector values to initialize (For Designers)
     public float baseMaxHealth = 100;
     public float baseCurrentHealth = 100;
     public float basePower = 10;
     public float baseMovementSpeed = 5;
-    public float baseMaxBlood = 100;
-    public float baseCurrentBlood = 100;
+    public float baseBlood = 100;
     public List<AbilityDataSO> baseAbilities = new List<AbilityDataSO>();
 
     // ---- Saved Vars ----      These are the actual values used in the game
@@ -29,11 +26,10 @@ public class Player : Entity
     private float currentHealth;
     private float currentPower;
     private float currentMovementSpeed;
-    private float currentMaxBlood;
     private float currentBlood;
     private List<AbilityDataSO> currentAbilities = new List<AbilityDataSO>();
 
-    // ---- Public Accessors ----   !! Only use these to access/edit the SyncVar values !!
+    // ---- Public Accessors ----   !! Only use these to access/edit values !!
     public override float MaxHealth
     {
         get => currentMaxHealth;
@@ -42,11 +38,7 @@ public class Player : Entity
     public override float CurrentHealth
     {
         get => currentHealth;
-        set
-        {
-            currentHealth = value;
-            UpdatePlayerHealth();
-        }
+        set => currentHealth = value;
     }
     public override float Power
     {
@@ -58,41 +50,23 @@ public class Player : Entity
         get => currentMovementSpeed;
         set => currentMovementSpeed = value;
     }
-    public float MaxBlood
-    {
-        get => currentMaxBlood;
-        set => currentMaxBlood = value;
-    }
-    public float CurrentBlood
+    public float Blood
     {
         get => currentBlood;
-        set
-        {
-            currentBlood = value;
-            UpdatePlayerBlood();
-        }
+        set => currentBlood = value;
     }
     public override List<AbilityDataSO> Abilities
     {
         get => currentAbilities;
-        set
-        {
-            currentAbilities = value;
-            UpdatePlayerAbilities();
-        }
+        set => currentAbilities = value;
     }
-    public override bool moveLocked
-    {
-        get => playerController.moveLocked;
-        set => playerController.moveLocked = value;
-    }
+    public override bool moveLocked { get; set; }
     public override bool casting { get; set; }
     public override bool isInvincible { get; set; }
-    public override Rigidbody rb => playerController.rb;
+    public override Rigidbody rb { get; }
     #endregion
 
     [Header("References")]
-    public PlayerController playerController;
     public AbilityHandler abilityHandler;
     public StatusHandler statusHandler;
     public Animator anim;
@@ -102,13 +76,12 @@ public class Player : Entity
         MaxHealth = baseMaxHealth;
         Power = basePower;
         MovementSpeed = baseMovementSpeed;
-        MaxBlood = baseMaxBlood;
+        Blood = baseBlood;
     }
 
     public void Start()
     {
         CurrentHealth = MaxHealth;
-        CurrentBlood = MaxBlood;
         Abilities = baseAbilities;
     }
 
@@ -132,26 +105,7 @@ public class Player : Entity
 
     public override void Die()
     {
-        Debug.Log("Player died");
-    }
-
-    #endregion
-
-    #region UI
-
-    private void UpdatePlayerHealth()
-    {
-        GameEvents.Instance.PlayerHealthChanged(CurrentHealth / MaxHealth);
-    }
-
-    private void UpdatePlayerBlood()
-    {
-        GameEvents.Instance.PlayerBloodChanged(CurrentBlood / MaxBlood);       
-    }
-
-    public void UpdatePlayerAbilities()
-    {
-        GameEvents.Instance.PlayerAbilitiesChanged(Abilities);
+        Debug.Log("Enemy died");
     }
 
     #endregion
